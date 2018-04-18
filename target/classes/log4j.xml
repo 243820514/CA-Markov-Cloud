@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- 输出控制台到日志 -->
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyy MMM dd HH:mm:ss,SSS} %-5p: %c - %m%n" />
+		</layout>
+	</appender>
+	<!-- 滚动方式记录日志 -->
+	<appender name="rollinglog" class="org.apache.log4j.RollingFileAppender">
+		<param name="file" value="./GeometryTest1_log/log.log"></param>
+		<param name="ImmediateFlush" value="true"></param>
+		<param name="Threshold" value="info"></param>
+		<param name="Append" value="true"></param>
+		<param name="MaxFileSize" value="2048KB"></param>
+		<param name="MaxBackupIndex" value="100"></param>
+        <layout class="org.apache.log4j.PatternLayout">  
+            <param name="ConversionPattern" value="%d{yyy MMM dd HH:mm:ss,SSS} %-5p: %c - %m%n"></param>  
+        </layout> 
+	</appender>
+	
+	<!-- 设定包的日志等级 -->
+	<logger name="test">
+		<level value="info" />
+	</logger>
+	
+	<!-- 定义全局的日志 -->
+	<root>
+		<priority value="info" />
+		<appender-ref ref="console" />
+		<appender-ref ref="rollinglog" />
+	</root>
+</log4j:configuration>
